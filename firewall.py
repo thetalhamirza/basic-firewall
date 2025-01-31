@@ -66,6 +66,7 @@ def packet_callback(packet):
         for ip,count in packet_count.items():
             packet_rate = count / time_interval
 
+            print(f"IP: {ip}, Packet rate: {packet_rate}")        # verbose
             if packet_rate > THRESHOLD and ip not in blocked_ips:
                 print(f"Blocking IP: {ip}, Packet Rate: {packet_rate}")
                 os.system(f"iptables -A INPUT -s {ip} -j DROP")
